@@ -1,0 +1,180 @@
+#cards-container {
+  width: 90%;
+  overflow: hidden;
+  margin: 20px;
+}
+
+.card {
+  transition: 0.3s;
+
+  margin: 15px 7.5px;
+  box-sizing: border-box;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card img {
+  display: block;
+}
+
+#slide-left-container,
+#slide-right-container {
+  display: none;
+}
+
+#slide-left-container.active,
+#slide-right-container.active {
+  display: block;
+  cursor: pointer;
+}
+
+.active {
+  cursor: pointer;
+}
+
+.slide-left,
+.slide-right {
+  height: 80px;
+  width: 80px;
+  margin-top: 30%;
+}
+
+
+.slide-left {
+  margin-left: 10%;
+}
+
+.slide-right {
+  transform: rotate(180deg);
+}
+
+// SliderComponent.scss
+$bg-color: #222;
+$margin: 20px;
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
+
+  h1 {
+    margin-bottom: 50px;
+  }
+}
+
+.wrapper {
+  position: relative;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    content: "";
+    display: block;
+    width: $margin;
+    height: 100%;
+  }
+
+  &:before {
+    left: 0;
+    background: linear-gradient(90deg, $bg-color, transparent);
+  }
+
+  &:after {
+    right: 0;
+    background: linear-gradient(-90deg, $bg-color, transparent);
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .arrow-left {
+    left: -60px;
+    color: #222;
+  }
+
+  .arrow-right {
+    right: -60px;
+    color: #222;
+    background-color: red;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .item {
+    width: 33%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .item {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .wrapper {
+    margin-left: -$margin;
+  }
+
+  .item {
+    width: 20%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .slide-left,
+  .slide-right {
+    height: 60px;
+    width: 60px;
+    margin-top: 0%;
+  }
+}
+
+.slick-arrow {
+  display: none !important;
+}
+
+.slick-track {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  @media screen and (max-width: 768px) {
+    gap: 20px;
+  }
+}
+
+.slick-slide {
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slick-slide.slick-current {
+  transform: scaleY(0.8);
+  transition: transform 0.3s ease-in-out;
+}
+
+
+

@@ -1,0 +1,662 @@
+@import "./breakpoint.scss";
+
+@mixin row($margin) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: $margin;
+}
+
+@mixin flex_row {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex_row_start {
+  display: flex;
+  align-items: flex-start;
+}
+
+@mixin justifycontent_center {
+  justify-content: center;
+}
+
+@mixin justifycontent_between {
+  justify-content: space-between;
+}
+
+@mixin justifycontent_end {
+  justify-content: end;
+}
+
+@mixin justifycontent_start {
+  justify-content: flex-start;
+}
+
+@mixin flex_wrap {
+  flex-wrap: wrap;
+}
+
+@mixin flex_dir_column {
+  flex-direction: column;
+}
+
+@mixin transition {
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -ms-transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@mixin TextBeautify($letter-spacing, $text-transform) {
+  letter-spacing: $letter-spacing;
+  text-transform: $text-transform;
+}
+
+@mixin img_fit {
+  @include flex_row();
+  @include justifycontent_center();
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+@mixin on($display) {
+  display: $display;
+  visibility: visible;
+  touch-action: auto;
+  pointer-events: all;
+  opacity: 1;
+}
+
+@mixin off($display) {
+  display: $display;
+  visibility: hidden;
+  @include TouchOff();
+  opacity: 0;
+}
+
+@mixin discription($line) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+@mixin discriptionNone() {
+  overflow: visible;
+  display: block;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  text-overflow: unset;
+}
+
+@mixin TouchOff() {
+  touch-action: none;
+  pointer-events: none;
+}
+
+@mixin Textgrad($grad) {
+  background: $grad;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+@mixin Large_Blog_card() {
+  .Large_Blog_card {
+    border-radius: 24px;
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    height: 400px;
+    cursor: pointer;
+    width: 100%;
+    background: var(--white);
+    position: relative;
+    @include transition();
+
+    @include breakpoint("max-sm") {
+      border-radius: 15px;
+      height: 420px;
+
+    }
+
+    @include breakpoint("max-xs") {
+      height: 390px;
+    }
+
+    &:hover {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+      .img_cover {
+        img {
+          transform: scale(1.03);
+        }
+      }
+
+      .Card_info_block {
+        .Top_row {
+          .tag {
+            background: var(--color2);
+            color: var(--white);
+          }
+
+          .likes_block {
+            .likes_block_btn {
+              transform: scale(1.1);
+            }
+          }
+        }
+
+        .Bottom_row {
+          .title {
+            color: var(--color1);
+          }
+
+          .Details_Row {
+            transform: translateY(-3px);
+          }
+        }
+      }
+    }
+
+    .img_cover {
+      @include img_fit();
+      border-radius: 24px;
+      width: 100%;
+      height: 100%;
+
+      @include breakpoint("max-sm") {
+        border-radius: 15px;
+
+
+      }
+    }
+
+    .Card_info_block {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      left: 0;
+      top: 0;
+      z-index: 10;
+      @include flex_row();
+      @include justifycontent_between();
+      @include flex_dir_column();
+
+      @include breakpoint("max-sm") {
+        padding: 12px;
+      }
+
+      @include breakpoint("max-xs") {
+        padding: 10px;
+      }
+
+      .Top_row {
+        @include row(0 0 15px 0);
+        @include justifycontent_between();
+        width: 100%;
+
+        @include breakpoint("max-sm") {
+          margin-bottom: 10px;
+        }
+
+        .tag {
+          border-radius: 5px;
+          background: #ffd10a;
+          padding: 4px 8px;
+          overflow: hidden;
+          @include flex_row();
+          @include justifycontent_center();
+          text-align: center;
+          @include transition();
+          color: #000;
+          font-size: 16px;
+          @include TextBeautify(1px, capitalize);
+          font-weight: 600;
+          line-height: 114.4%;
+
+          @include breakpoint("max-sm") {
+
+            padding: 3px 8px;
+
+            font-size: 14px;
+
+          }
+
+          @include breakpoint("max-xs") {
+            font-size: 12px;
+
+          }
+        }
+
+        .likes_block {
+          @include row(0);
+          @include justifycontent_center();
+          gap: 10px;
+
+          @include breakpoint("max-sm") {
+
+            gap: 8px;
+
+          }
+
+          .likes_block_btn {
+            @include img_fit();
+            width: 30px;
+            height: 30px;
+
+            @include breakpoint("max-sm") {
+              width: 25px;
+              height: 25px;
+            }
+
+            @include breakpoint("max-xs") {
+              width: 20px;
+              height: 20px;
+
+            }
+          }
+        }
+      }
+
+      .Bottom_row {
+        width: 100%;
+
+        .title {
+          color: #fff;
+          text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+          font-size: 28px;
+          @include TextBeautify(1px, initial);
+          font-weight: 700;
+          line-height: 1.2;
+          @include transition();
+          @include discription(3);
+
+          @include breakpoint("max-sm") {
+            font-size: 24px;
+          }
+
+          @include breakpoint("max-xs") {
+            font-size: 22px;
+          }
+        }
+
+        .discription {
+          color: #fff;
+          text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.39);
+          font-size: 18px;
+          @include TextBeautify(0.5px, initial);
+          font-weight: 700;
+          line-height: 114.4%;
+          margin: 15px 0;
+          @include discription(4);
+
+          @include breakpoint("max-sm") {
+            font-size: 16px;
+            margin: 12px 0;
+          }
+
+          @include breakpoint("max-xs") {
+            font-size: 14px;
+            margin: 10px 0;
+          }
+        }
+
+        .Details_Row {
+          @include flex_row();
+          @include transition();
+
+          .item {
+            @include flex_row();
+            gap: 5px;
+            color: #fff;
+            font-size: 14px;
+            @include TextBeautify(1px, capitalize);
+            font-weight: 500;
+            line-height: 114.4%;
+            padding-right: 8px;
+            border-right: 2px solid var(--white);
+            margin-right: 8px;
+
+            @include breakpoint("max-sm") {
+              padding-right: 6px;
+              margin-right: 6px;
+              font-size: 12px;
+            }
+
+            @include breakpoint("max-xs") {
+              font-size: 11px;
+              padding-right: 4px;
+              margin-right: 4px;
+            }
+
+            .star {
+              @include img_fit();
+              margin-top: -4px;
+              width: 14px;
+
+              @include breakpoint("max-sm") {
+                width: 12px;
+                margin-top: -2px;
+
+
+              }
+
+              @include breakpoint("max-xs") {
+                font-size: 11px;
+
+
+              }
+            }
+
+            &:last-child {
+              border-right: unset;
+              margin-right: unset;
+              padding-right: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin BlogCard() {
+  .Blog_Col {
+    width: 33.33%;
+    padding: 0 8px;
+    margin-bottom: 16px;
+
+    @include breakpoint("max-md") {
+      width: 50%;
+    }
+
+    @include breakpoint("max-sm") {
+      width: 100%;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @include breakpoint("max-xs") {
+      max-width: 100%;
+    }
+
+    .Blog_Card {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #ffffff;
+      cursor: pointer;
+      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+      @include transition();
+
+      @include breakpoint("max-xs") {
+        border-radius: 10px;
+      }
+
+      &:hover {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+          rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+        .Card_top {
+          .Blog_img {
+            img {
+              transform: scale(1.1);
+            }
+          }
+
+          .Blog_top_info {
+            .tag {
+              background: var(--color3);
+            }
+
+            .likes_block {
+              .likes_block_btn {
+                transform: scale(1.1);
+              }
+            }
+          }
+        }
+
+        .Card_Body {
+          .Card_title {
+            @include Textgrad(var(--grad3));
+          }
+
+          .time {
+            color: var(--color2);
+          }
+
+          .Discription {
+            color: #515050;
+          }
+        }
+      }
+
+      .Card_top {
+        position: relative;
+        width: 100%;
+        border-radius: 14px 14px 0 0;
+
+        @include breakpoint("max-xs") {
+          border-radius: 10px 10px 0 0;
+        }
+
+        .Blog_img {
+          width: 100%;
+          @include img_fit();
+          border-radius: 14px 14px 0 0;
+
+          @include breakpoint("max-xs") {
+            border-radius: 10px 10px 0 0;
+          }
+
+          img {
+            height: 240px;
+
+            @include breakpoint("max-xs") {
+              height: 220px;
+            }
+          }
+        }
+
+        .Blog_top_info {
+          position: absolute;
+          width: 100%;
+          padding: 10px;
+          left: 0;
+          top: 0;
+          z-index: 10;
+          @include justifycontent_between();
+          @include row(0);
+
+          @include breakpoint("max-xs") {
+            padding: 8px;
+          }
+
+          .tag {
+            border-radius: 5px;
+            background: #ffd10a;
+            padding: 4px 8px;
+            overflow: hidden;
+            @include flex_row();
+            @include justifycontent_center();
+            text-align: center;
+            @include transition();
+            color: #000;
+            font-size: 14px;
+            @include TextBeautify(1px, capitalize);
+            font-weight: 600;
+            line-height: 114.4%;
+
+            @include breakpoint("max-xs") {
+              font-size: 12px;
+            }
+          }
+
+          .likes_block {
+            @include row(0);
+            @include justifycontent_center();
+            gap: 8px;
+
+            @include breakpoint("max-xs") {
+              gap: 6px;
+            }
+
+            .likes_block_btn {
+              @include img_fit();
+              width: 20px;
+              height: 20px;
+
+              @include breakpoint("max-xs") {
+                width: 17px;
+                height: 17px;
+              }
+            }
+          }
+        }
+      }
+
+      .Card_Body {
+        padding: 16px;
+        overflow: hidden;
+
+        @include breakpoint("max-xs") {
+          padding: 12px;
+        }
+
+        .Card_title {
+          color: #000;
+          font-size: 20px;
+          font-weight: 800;
+          line-height: 1.35;
+          @include transition();
+          @include TextBeautify(0.5px, initial);
+          @include discription(3);
+          margin-bottom: 7px;
+
+          @include breakpoint("max-xs") {
+            font-size: 18px;
+            margin-bottom: 5px;
+          }
+        }
+
+        .time {
+          color: #515050;
+          font-size: 12px;
+          @include discription(3);
+          @include TextBeautify(0.5px, initial);
+          @include transition();
+          font-weight: 700;
+          line-height: 1.35;
+        }
+
+        .Discription {
+          color: #000;
+          font-size: 16px;
+          line-height: 1.35;
+          @include TextBeautify(0.5px, initial);
+          @include discription(3);
+          font-weight: 600;
+          @include transition();
+          margin: 10px 0;
+
+          @include breakpoint("max-xs") {
+            font-size: 14px;
+            margin: 8px 0;
+          }
+        }
+
+        .Bottom_row {
+          @include flex_row();
+          @include justifycontent_between();
+
+          .Details_Row {
+            @include flex_row();
+            @include transition();
+
+            .item {
+              @include flex_row();
+              gap: 5px;
+              color: #000000;
+              font-size: 14px;
+              @include TextBeautify(1px, capitalize);
+              font-weight: 500;
+              line-height: 114.4%;
+              padding-right: 8px;
+              border-right: 2px solid var(--black);
+              margin-right: 8px;
+
+              @include breakpoint("max-xs") {
+                font-size: 13px;
+                padding-right: 6px;
+                margin-right: 6px;
+                font-weight: 600;
+              }
+
+              .icon {
+                @include img_fit();
+              }
+
+              .star {
+                margin-top: -4px;
+                width: 15px;
+                height: 15px;
+
+                svg {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+
+              &:last-child {
+                border-right: unset;
+                margin-right: unset;
+                padding-right: unset;
+              }
+            }
+          }
+
+          .Ratings {
+            @include flex_row();
+            @include justifycontent_center();
+
+            .Emoji {
+              width: 22px;
+              height: 22px;
+              @include img_fit();
+              margin-left: -8px;
+
+              svg {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin BlogCards_Section() {
+  .Blog_Row {
+    @include row(0 -8px);
+    align-items: stretch;
+    @include BlogCard();
+  }
+}

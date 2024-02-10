@@ -1,0 +1,13 @@
+.image-bg{
+    background-image: url("../public/images/home/pseudo.png");
+    height: 961px;
+    width: 100%;
+    position: absolute;
+    background-repeat :no-repeat;
+    background-size: cover;
+
+    @include breakpoint("max-md") {
+        height: 300px;
+        width: 100%;
+      }
+}
