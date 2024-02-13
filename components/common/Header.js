@@ -99,11 +99,11 @@ function Header() {
                   <div className="relative group">
                     <div
                       onClick={() => handleSelectedMenu(item.label)}
-                      className={`px-3 py-2 font-medium font-sans text-lg cursor-pointer transition duration-500 ease-in-out hover:border-[#14413E] hover:border-b-2
+                      className={`px-3 py-2 font-medium font-sans text-lg cursor-pointer transition duration-500 ease-in-out hover:text-[#144441] hover:scale-105
                       ${
                         router.pathname === "/one-bedroom-apartment" ||
                         router.pathname === "/studio-apartment"
-                          ? "border-b-2 border-[#14413E] text-[#14413E]"
+                          ? "font-bold text-[#144441] "
                           : "text-[#5F4C3B]"
                       }`}
                     >
@@ -124,7 +124,7 @@ function Header() {
                             <div
                               className={`text-[#5F4C3B] block rounded-md px-2 py-3 text-base font-medium text-[20px] `}
                             >
-                              <p className="border-b-2 border-transparent transition duration-10 ease-in-out hover:border-[#14413E] hover:border-b-2">
+                              <p className="border-b-2 border-transparent transition duration-10 ease-in-out hover:text-[#144441] ">
                                 {subItem.label}
                               </p>
                             </div>
@@ -137,9 +137,9 @@ function Header() {
                   <Link href={item.path}>
                     <div
                       onClick={() => handleSelectedMenu(item.label)}
-                      className={`px-3 py-2 font-medium font-sans text-lg relative transition duration-10 ease-in-out hover:border-[#14413E] hover:border-b-2 ${
+                      className={`px-3 py-2 font-medium font-sans text-lg relative transition duration-10 ease-in-out hover:text-[#144441] hover:scale-105 ${
                         selectedMenu === item.path
-                          ? "border-b-2 border-[#14413E] text-[#14413E]"
+                          ? "font-bold text-[#144441]"
                           : "text-[#5F4C3B]"
                       }`}
                     >
@@ -181,8 +181,7 @@ function Header() {
                     <Link key={index} href={subItem.path}>
                       <div
                         className={`text-black  block rounded-md px-3 py-2 text-base font-medium${
-                          router.pathname === subItem.path &&
-                          "border-b-2 border-[#14413E]"
+                          router.pathname === subItem.path && ""
                         }`}
                       >
                         {subItem.label}
@@ -193,8 +192,7 @@ function Header() {
                   <Link href={item?.path}>
                     <div
                       className={`text-black block rounded-md px-3 py-2 text-base font-medium${
-                        router.pathname === item.path &&
-                        "border-b-2 border-[#14413E]"
+                        router.pathname === item.path && ""
                       }`}
                     >
                       {item.label}
